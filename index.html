@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="A simple and modern contact manager for searching, organizing, and managing user information."
+    >
+
+    <meta
+        name="keywords"
+        content="contact manager, user search, contacts, user directory, contact organizer"
+    >
+
+    <meta name="author" content="Your Name">
+
+    <meta name="robots" content="index, follow">
+
+    <title>Rehan — Smart Contact Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <a href="#" class="logo" aria-label="Contactly Home">
+                Reh<span>an</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="#contacts">Contacts</a>
+                <a href="#about">About</a>
+            </nav>
+
+            <button
+                class="add-user-btn"
+                type="button"
+                aria-label="Add a new contact"
+            >
+                + Add Contact
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main>
+
+        <!-- HERO / SEARCH SECTION -->
+
+        <section class="hero" aria-labelledby="page-title">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">YOUR PERSONAL DIRECTORY</p>
+
+                <h1 id="page-title">
+                    Find your contacts,
+                    <span>instantly.</span>
+                </h1>
+
+                <p class="hero-description">
+                    Search and manage your contacts in one simple,
+                    organized space.
+                </p>
+
+                <form class="search-box" role="search">
+
+                    <label for="user-search" class="sr-only">
+                        Search contacts
+                    </label>
+
+                    <span class="search-icon" aria-hidden="true">
+                        ⌕
+                    </span>
+
+                    <input
+                        type="search"
+                        id="user-search"
+                        name="search"
+                        placeholder="Search by name or location..."
+                        autocomplete="off"
+                    >
+
+                    <button type="submit">
+                        Search
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CONTACT SECTION ================= -->
+
+        <section
+            class="contacts-section"
+            id="contacts"
+            aria-labelledby="contacts-title"
+        >
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">DIRECTORY</p>
+
+                    <h2 id="contacts-title">
+                        Your Contacts
+                    </h2>
+                </div>
+
+                <span class="contact-count">
+                    4 contacts
+                </span>
+
+            </div>
+
+
+            <!-- CONTACT GRID -->
+
+            <div class="contact-grid">
+
+                <article class="contact-card">
+
+                    <div
+                        class="contact-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=600&q=80');"
+                    >
+
+                        <span class="status-badge urgent">
+                            Urgent
+                        </span>
+
+                    </div>
+
+                    <div class="contact-content">
+
+                        <div class="contact-title">
+
+                            <div>
+                                <h3>Fatima Uma</h3>
+
+                                <p class="contact-role">
+                                    Business Consultant
+                                </p>
+                            </div>
+
+                            <button
+                                class="more-btn"
+                                aria-label="More options for Fatima Uma"
+                            >
+                                ⋮
+                            </button>
+
+                        </div>
+
+                        <div class="contact-info">
+
+                            <div>
+                                <span>📍</span>
+                                <p>Singapore</p>
+                            </div>
+
+                            <div>
+                                <span>📞</span>
+                                <p>+65 8123 4567</p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button type="button" class="primary-btn">
+                                Call
+                            </button>
+
+                            <button type="button" class="secondary-btn">
+                                Message
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CONTACT CARD 3 -->
+
+                <article class="contact-card">
+
+                    <div
+                        class="contact-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80');"
+                    >
+
+                        <span class="status-badge emergency">
+                            Emergency
+                        </span>
+
+                    </div>
+
+                    <div class="contact-content">
+
+                        <div class="contact-title">
+
+                            <div>
+                                <h3>Daniel Wilson</h3>
+
+                                <p class="contact-role">
+                                    Project Manager
+                                </p>
+                            </div>
+
+                            <button
+                                class="more-btn"
+                                aria-label="More options for Daniel Wilson"
+                            >
+                                ⋮
+                            </button>
+
+                        </div>
+
+                        <div class="contact-info">
+
+                            <div>
+                                <span>📍</span>
+                                <p>London, UK</p>
+                            </div>
+
+                            <div>
+                                <span>📞</span>
+                                <p>+44 7700 900123</p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button type="button" class="primary-btn">
+                                Call
+                            </button>
+
+                            <button type="button" class="secondary-btn">
+                                Message
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- CONTACT CARD 4 -->
+
+                <article class="contact-card">
+
+                    <div
+                        class="contact-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80');"
+                    >
+
+                        <span class="status-badge normal">
+                            No Rush
+                        </span>
+
+                    </div>
+
+                    <div class="contact-content">
+
+                        <div class="contact-title">
+
+                            <div>
+                                <h3>Sophia Carter</h3>
+
+                                <p class="contact-role">
+                                    UI/UX Designer
+                                </p>
+                            </div>
+
+                            <button
+                                class="more-btn"
+                                aria-label="More options for Sophia Carter"
+                            >
+                                ⋮
+                            </button>
+
+                        </div>
+
+                        <div class="contact-info">
+
+                            <div>
+                                <span>📍</span>
+                                <p>New York, USA</p>
+                            </div>
+
+                            <div>
+                                <span>📞</span>
+                                <p>+1 212 555 0198</p>
+                            </div>
+
+                        </div>
+
+                        <div class="card-actions">
+
+                            <button type="button" class="primary-btn">
+                                Call
+                            </button>
+
+                            <button type="button" class="secondary-btn">
+                                Message
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ADD CONTACT ================= -->
+
+        <section
+            class="add-contact-section"
+            id="add-contact"
+            aria-labelledby="add-contact-title"
+        >
+
+            <div class="form-container">
+
+                <div class="form-header">
+
+                    <p class="section-label">NEW CONTACT</p>
+
+                    <h2 id="add-contact-title">
+                        Add a new contact
+                    </h2>
+
+                    <p>
+                        Save someone's information to your personal directory.
+                    </p>
+
+                </div>
+
+
+                <form class="contact-form">
+
+                   <div class="form-group">
+
+    <label for="profile-image">
+        Profile Image
+    </label>
+
+    <div class="image-upload">
+
+        <label for="profile-image" class="upload-box">
+
+            <span class="upload-icon">＋</span>
+
+            <span class="upload-text">
+                <strong>Choose a profile image</strong>
+                <small>JPG, PNG or WEBP</small>
+            </span>
+
+        </label>
+
+        <input
+            type="file"
+            id="profile-image"
+            name="profile-image"
+            accept="image/jpeg, image/png, image/webp"
+            required
+        >
+
+    </div>
+
+</div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="full-name">
+                                Full Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="full-name"
+                                name="full-name"
+                                placeholder="Enter full name"
+                                autocomplete="name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="home-town">
+                                Home Town
+                            </label>
+
+                            <input
+                                type="text"
+                                id="home-town"
+                                name="home-town"
+                                placeholder="Enter home town"
+                                autocomplete="address-level2"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="purpose">
+                            Purpose
+                        </label>
+
+                        <input
+                            type="text"
+                            id="purpose"
+                            name="purpose"
+                            placeholder="e.g. Project discussion"
+                            required
+                        >
+
+                    </div>
+
+
+                    <fieldset class="category-field">
+
+                        <legend>
+                            Contact Category
+                        </legend>
+
+                        <div class="category-options">
+
+                            <label class="category emergency-option">
+                                <input
+                                    type="radio"
+                                    name="category"
+                                    value="emergency"
+                                >
+                                Emergency
+                            </label>
+
+                            <label class="category important-option">
+                                <input
+                                    type="radio"
+                                    name="category"
+                                    value="important"
+                                >
+                                Important
+                            </label>
+
+                            <label class="category urgent-option">
+                                <input
+                                    type="radio"
+                                    name="category"
+                                    value="urgent"
+                                >
+                                Urgent
+                            </label>
+
+                            <label class="category normal-option">
+                                <input
+                                    type="radio"
+                                    name="category"
+                                    value="normal"
+                                >
+                                No Rush
+                            </label>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <button
+                        type="submit"
+                        class="create-btn"
+                    >
+                        Create Contact
+                    </button>
+
+                </form>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer" id="about">
+
+        <p>
+            © 2026 Rehan. A simple personal contact manager.
+        </p>
+
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

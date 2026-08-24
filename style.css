@@ -1,0 +1,841 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background: #f5f6f8;
+    color: #151515;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   GLOBAL
+========================= */
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid #e9e9e9;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    backdrop-filter: blur(14px);
+}
+
+.header-container {
+    width: min(1180px, 92%);
+    margin: auto;
+
+    min-height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.logo {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: #7c3aed;
+}
+
+.main-nav {
+    display: flex;
+    gap: 30px;
+    margin-left: auto;
+}
+
+.main-nav a {
+    font-size: 0.95rem;
+    color: #666;
+    transition: 0.2s ease;
+}
+
+.main-nav a:hover {
+    color: #111;
+}
+
+.add-user-btn {
+    background: #151515;
+    color: white;
+
+    padding: 11px 18px;
+    border-radius: 12px;
+
+    font-weight: 600;
+
+    transition: 0.2s ease;
+}
+
+.add-user-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    padding: 90px 20px 75px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(124, 58, 237, 0.12),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom left,
+            rgba(20, 184, 166, 0.10),
+            transparent 30%
+        );
+}
+
+.hero-content {
+    width: min(900px, 100%);
+    margin: auto;
+    text-align: center;
+}
+
+.eyebrow,
+.section-label {
+    color: #7c3aed;
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    max-width: 750px;
+    margin: 12px auto 18px;
+
+    font-size: clamp(2.5rem, 6vw, 4.7rem);
+    line-height: 1.02;
+
+    letter-spacing: -3px;
+}
+
+.hero h1 span {
+    color: #7c3aed;
+}
+
+.hero-description {
+    max-width: 550px;
+    margin: auto;
+
+    color: #666;
+    font-size: 1.05rem;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    width: min(680px, 100%);
+
+    margin: 35px auto 0;
+
+    background: white;
+
+    padding: 8px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 17px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.07);
+}
+
+.search-icon {
+    padding-left: 12px;
+
+    font-size: 1.5rem;
+    color: #888;
+}
+
+.search-box input {
+    flex: 1;
+
+    min-width: 0;
+
+    border: none;
+    outline: none;
+
+    padding: 14px 5px;
+
+    font-size: 0.95rem;
+}
+
+.search-box button {
+    background: #151515;
+    color: white;
+
+    padding: 13px 22px;
+
+    border-radius: 11px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   CONTACT SECTION
+========================= */
+
+.contacts-section {
+    width: min(1180px, 92%);
+    margin: auto;
+
+    padding: 75px 0;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 30px;
+}
+
+.section-heading h2 {
+    margin-top: 5px;
+
+    font-size: 2rem;
+    letter-spacing: -1px;
+}
+
+.contact-count {
+    background: white;
+
+    border: 1px solid #e5e5e5;
+
+    padding: 8px 14px;
+    border-radius: 50px;
+
+    color: #666;
+    font-size: 0.85rem;
+}
+
+
+/* =========================
+   CONTACT GRID
+========================= */
+
+.contact-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* =========================
+   CONTACT CARD
+========================= */
+
+.contact-card {
+    overflow: hidden;
+
+    background: white;
+
+    border: 1px solid #e8e8e8;
+    border-radius: 24px;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.09);
+}
+
+.image-upload {
+    width: 100%;
+}
+
+.image-upload input[type="file"] {
+    display: none;
+}
+
+.upload-box {
+    min-height: 120px;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+
+    border: 2px dashed #d8d8d8;
+    border-radius: 16px;
+
+    background: #fafafa;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+
+    box-sizing: border-box;
+}
+
+.upload-box:hover {
+    border-color: #111;
+    background: #f5f5f5;
+}
+
+.upload-box:active {
+    transform: scale(0.99);
+}
+
+.upload-icon {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #111;
+    color: white;
+
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.upload-text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.upload-text strong {
+    font-size: 15px;
+    color: #222;
+}
+
+.upload-text small {
+    font-size: 12px;
+    color: #888;
+}
+.status-badge {
+    position: absolute;
+    z-index: 2;
+}
+
+
+/* =========================
+   CONTACT IMAGE
+========================= */
+
+.contact-image {
+    height: 220px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+
+    object-fit: cover;
+    object-position: center 25%;
+}
+
+.contact-image::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 45%,
+            rgba(0, 0, 0, 0.35)
+        );
+}
+
+
+/* =========================
+   BADGES
+========================= */
+
+.status-badge {
+    position: absolute;
+
+    top: 16px;
+    left: 16px;
+
+    z-index: 2;
+
+    padding: 6px 11px;
+
+    border-radius: 50px;
+
+    background: #f59e0b;
+    color: white;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.status-badge.urgent {
+    background: #8b5cf6;
+}
+
+.status-badge.emergency {
+    background: #ef4444;
+}
+
+.status-badge.normal {
+    background: #14b8a6;
+}
+
+
+/* =========================
+   CARD CONTENT
+========================= */
+
+.contact-content {
+    padding: 23px;
+}
+
+.contact-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.contact-title h3 {
+    font-size: 1.3rem;
+}
+
+.contact-role {
+    margin-top: 3px;
+
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.more-btn {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #f3f3f3;
+
+    font-size: 1.2rem;
+}
+
+.contact-info {
+    display: grid;
+    gap: 9px;
+
+    margin: 22px 0;
+}
+
+.contact-info div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #666;
+    font-size: 0.9rem;
+}
+
+
+/* =========================
+   CARD BUTTONS
+========================= */
+
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.primary-btn,
+.secondary-btn {
+    flex: 1;
+
+    padding: 11px;
+
+    border-radius: 11px;
+
+    font-weight: 600;
+}
+
+.primary-btn {
+    background: #151515;
+    color: white;
+}
+
+.secondary-btn {
+    background: #f0f0f0;
+    color: #222;
+}
+
+
+/* =========================
+   ADD CONTACT
+========================= */
+
+.add-contact-section {
+    padding: 80px 20px;
+
+    background: #eeeeef;
+}
+
+.form-container {
+    width: min(800px, 100%);
+    margin: auto;
+
+    padding: 42px;
+
+    background: white;
+
+    border: 1px solid #e4e4e4;
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 50px rgba(0, 0, 0, 0.06);
+}
+
+.form-header {
+    margin-bottom: 30px;
+}
+
+.form-header h2 {
+    margin: 5px 0;
+
+    font-size: 2rem;
+    letter-spacing: -1px;
+}
+
+.form-header p:last-child {
+    color: #777;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.contact-form {
+    display: grid;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label,
+.category-field legend {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 14px 15px;
+
+    border: 1px solid #dedede;
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #fafafa;
+
+    transition: 0.2s ease;
+}
+
+.form-group input:focus {
+    background: white;
+    border-color: #7c3aed;
+
+    box-shadow:
+        0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+
+/* =========================
+   CATEGORY
+========================= */
+
+.category-field {
+    border: none;
+}
+
+.category-field legend {
+    margin-bottom: 12px;
+}
+
+.category-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category {
+    padding: 9px 14px;
+
+    border: 1px solid #ddd;
+    border-radius: 50px;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.category input {
+    accent-color: currentColor;
+}
+
+.emergency-option {
+    color: #dc2626;
+}
+
+.important-option {
+    color: #d97706;
+}
+
+.urgent-option {
+    color: #7c3aed;
+}
+
+.normal-option {
+    color: #0f766e;
+}
+
+
+/* =========================
+   CREATE BUTTON
+========================= */
+
+.create-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border-radius: 13px;
+
+    background: #151515;
+    color: white;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.create-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.site-footer {
+    padding: 30px 20px;
+
+    text-align: center;
+
+    color: #777;
+    font-size: 0.85rem;
+
+    background: #151515;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    .main-nav {
+        display: none;
+    }
+
+    .header-container {
+        min-height: 65px;
+    }
+
+    .hero {
+        padding-top: 65px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        padding: 28px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .add-user-btn {
+        padding: 9px 12px;
+        font-size: 0.8rem;
+    }
+
+    .logo {
+        font-size: 1.35rem;
+    }
+
+    .hero {
+        padding: 55px 15px;
+    }
+
+    .search-box {
+        flex-wrap: wrap;
+    }
+
+    .search-box input {
+        width: 70%;
+    }
+
+    .search-box button {
+        width: 100%;
+    }
+
+    .contacts-section {
+        width: 94%;
+        padding: 55px 0;
+    }
+
+    .section-heading {
+        align-items: start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .contact-image {
+        height: 190px;
+    }
+
+    .card-actions {
+        flex-direction: column;
+    }
+
+    .form-container {
+        padding: 22px;
+        border-radius: 20px;
+    }
+
+    .category-options {
+        flex-direction: column;
+    }
+
+    .category {
+        text-align: center;
+    }
+}
