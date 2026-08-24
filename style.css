@@ -13,20 +13,45 @@ html {
 }
 
 body {
-    font-family:
-        Inter,
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-    background: #f5f6f8;
-    color: #151515;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
     line-height: 1.5;
+    transition: background-color 0.35s ease, color 0.35s ease;
 }
 
+/* ================================
+   THEME VARIABLES
+================================ */
 
+:root {
+    --bg-color: #f5f6f8;
+    --card-color: #ffffff;
+    --text-color: #111111;
+    --muted-color: #777777;
+    --border-color: #e5e5e5;
+    --input-bg: #ffffff;
+    --header-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --form-bg: #ffffff;
+}
+
+body.dark-mode {
+    --bg-color: #111111;
+    --card-color: #1c1c1c;
+    --text-color: #ffffff;
+    --muted-color: #a5a5a5;
+    --border-color: #333333;
+    --input-bg: #222222;
+    --header-bg: #161616;
+    --shadow-color: rgba(0, 0, 0, 0.35);
+    --form-bg: #1c1c1c;
+}
+
+body.dark .delete-icon {
+    background: rgba(229, 57, 53, 0.15);
+    color: #ff6b6b;
+}
 /* =========================
    GLOBAL
 ========================= */
@@ -58,28 +83,20 @@ a {
     border: 0;
 }
 
-
 /* =========================
    HEADER
 ========================= */
 
 .site-header {
-    background: rgba(255, 255, 255, 0.9);
-    border-bottom: 1px solid #e9e9e9;
-
-    position: sticky;
-    top: 0;
-    z-index: 100;
-
-    backdrop-filter: blur(14px);
+    background: var(--header-bg);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 .header-container {
     width: min(1180px, 92%);
     margin: auto;
-
     min-height: 72px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,6 +107,7 @@ a {
     font-size: 1.6rem;
     font-weight: 800;
     letter-spacing: -1px;
+    color: var(--text-color);
 }
 
 .logo span {
@@ -100,34 +118,47 @@ a {
     display: flex;
     gap: 30px;
     margin-left: auto;
+    color: var(--text-color);
 }
 
 .main-nav a {
     font-size: 0.95rem;
     color: #666;
-    transition: 0.2s ease;
+    transition: color 0.2s ease;
 }
 
 .main-nav a:hover {
     color: #111;
 }
 
+body.dark-mode .main-nav a {
+    color: #aaa;
+}
+
+body.dark-mode .main-nav a:hover {
+    color: #fff;
+}
+
 .add-user-btn {
     background: #151515;
     color: white;
-
     padding: 11px 18px;
     border-radius: 20px;
-
     font-weight: 600;
-
-    transition: 0.2s ease;
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .add-user-btn:hover {
     transform: translateY(-2px);
 }
 
+body.dark-mode .add-user-btn {
+    background: #333;
+}
+
+body.dark-mode .add-user-btn:hover {
+    background: #444;
+}
 
 /* =========================
    HERO
@@ -135,18 +166,8 @@ a {
 
 .hero {
     padding: 90px 20px 75px;
-
-    background:
-        radial-gradient(
-            circle at top right,
-            rgba(124, 58, 237, 0.12),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at bottom left,
-            rgba(20, 184, 166, 0.10),
-            transparent 30%
-        );
+    background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.12), transparent 35%),
+                radial-gradient(circle at bottom left, rgba(20, 184, 166, 0.10), transparent 30%);
 }
 
 .hero-content {
@@ -158,20 +179,16 @@ a {
 .eyebrow,
 .section-label {
     color: #7c3aed;
-
     font-size: 0.75rem;
     font-weight: 800;
-
     letter-spacing: 2px;
 }
 
 .hero h1 {
     max-width: 750px;
     margin: 12px auto 18px;
-
     font-size: clamp(2.5rem, 6vw, 4.7rem);
     line-height: 1.02;
-
     letter-spacing: -3px;
 }
 
@@ -182,11 +199,9 @@ a {
 .hero-description {
     max-width: 550px;
     margin: auto;
-
-    color: #666;
+    color: var(--muted-color);
     font-size: 1.05rem;
 }
-
 
 /* =========================
    SEARCH
@@ -194,55 +209,56 @@ a {
 
 .search-box {
     width: min(680px, 100%);
-
     margin: 35px auto 0;
-
-    background: white;
-
+    background: var(--card-color);
     padding: 8px;
-
-    border: 1px solid #e5e5e5;
+    border: 1px solid var(--border-color);
     border-radius: 17px;
-
     display: flex;
     align-items: center;
     gap: 8px;
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 12px 35px var(--shadow-color);
+    transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .search-icon {
     padding-left: 12px;
-
     font-size: 1.5rem;
     color: #888;
 }
 
 .search-box input {
     flex: 1;
-
     min-width: 0;
-
     border: none;
     outline: none;
-
     padding: 14px 5px;
-
     font-size: 0.95rem;
+    background: transparent;
+    color: var(--text-color);
 }
 
 .search-box button {
     background: #151515;
     color: white;
-
     padding: 13px 22px;
-
-    border-radius: 11px;
-
+    border-radius: 17px;
     font-weight: 600;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
+.search-box button:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+body.dark-mode .search-box button {
+    background: #333;
+}
+
+body.dark-mode .search-box button:hover {
+    background: #444;
+}
 
 /* =========================
    CONTACT SECTION
@@ -251,7 +267,6 @@ a {
 .contacts-section {
     width: min(1180px, 92%);
     margin: auto;
-
     padding: 75px 0;
 }
 
@@ -259,29 +274,25 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: end;
-
     margin-bottom: 30px;
 }
 
 .section-heading h2 {
     margin-top: 5px;
-
     font-size: 2rem;
     letter-spacing: -1px;
+    color: var(--text-color);
 }
 
 .contact-count {
-    background: white;
-
-    border: 1px solid #e5e5e5;
-
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
     padding: 8px 14px;
     border-radius: 50px;
-
-    color: #666;
+    color: var(--muted-color);
     font-size: 0.85rem;
+    transition: background-color 0.35s ease, border-color 0.35s ease;
 }
-
 
 /* =========================
    CONTACT GRID
@@ -289,40 +300,35 @@ a {
 
 .contact-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 24px;
 }
-
 
 /* =========================
    CONTACT CARD
 ========================= */
 
 .contact-card {
-    overflow: hidden;
-
-    background: white;
-
-    border: 1px solid #e8e8e8;
-    border-radius: 24px;
-
-    box-shadow:
-        0 10px 35px rgba(0, 0, 0, 0.05);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    position: relative; /* FIXED: needed for absolute positioning of badge */
+    background: var(--card-color);
+    color: var(--text-color);
+    box-shadow: 0 10px 30px var(--shadow-color);
+    border-radius: 12px;
+    transition: background-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease, transform 0.3s ease; /* FIXED: added transform transition */
 }
 
 .contact-card:hover {
     transform: translateY(-5px);
-
-    box-shadow:
-        0 18px 45px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.09);
 }
+
+body.dark-mode .contact-card:hover {
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================
+   UPLOAD BOX
+========================= */
 
 .image-upload {
     width: 100%;
@@ -335,30 +341,21 @@ a {
 .upload-box {
     min-height: 120px;
     width: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 14px;
-
-    border: 2px dashed #d8d8d8;
+    border: 2px dashed var(--border-color);
     border-radius: 16px;
-
-    background: #fafafa;
-
+    background: var(--input-bg);
     cursor: pointer;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease,
-        transform 0.2s ease;
-
+    transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     box-sizing: border-box;
 }
 
 .upload-box:hover {
-    border-color: #111;
-    background: #f5f5f5;
+    border-color: var(--text-color);
+    background: var(--card-color);
 }
 
 .upload-box:active {
@@ -368,43 +365,30 @@ a {
 .upload-icon {
     width: 42px;
     height: 42px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     border-radius: 50%;
-
-    background: #111;
-    color: white;
-
+    background: var(--text-color);
+    color: var(--bg-color);
     font-size: 25px;
     font-weight: 300;
-}
-
-.upload-text {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    transition: background-color 0.35s ease, color 0.35s ease;
 }
 
 .upload-text strong {
     font-size: 15px;
-    color: #222;
+    color: var(--text-color);
 }
 
 .upload-text small {
     font-size: 12px;
-    color: #888;
-}
-.status-badge {
-    position: absolute;
-    z-index: 2;
+    color: var(--muted-color);
 }
 
-/* ================================
+/* =========================
    HEADER ACTIONS
-================================ */
+========================= */
 
 .header-actions {
     display: flex;
@@ -412,92 +396,59 @@ a {
     gap: 16px;
 }
 
-
-/* ================================
+/* =========================
    THEME TOGGLE
-================================ */
+========================= */
 
 .theme-toggle {
     position: relative;
-
     width: 76px;
     height: 38px;
-
     display: block;
-
     cursor: pointer;
+    flex-shrink: 0;
 }
 
 .theme-toggle input {
     display: none;
 }
 
-
 .theme-slider {
     position: absolute;
     inset: 0;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
-
     padding: 3px;
-
     box-sizing: border-box;
-
     border: 1px solid #dedede;
     border-radius: 999px;
-
     background: #eeeeee;
-
-    transition:
-        background 0.35s ease,
-        border-color 0.35s ease;
+    transition: background 0.35s ease, border-color 0.35s ease;
 }
-
-
-/* Sliding circle */
 
 .theme-slider::before {
     content: "";
-
     position: absolute;
-
     width: 32px;
     height: 32px;
-
     left: 3px;
-
     border-radius: 50%;
-
     background: #ffffff;
-
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.15);
-
-    transition:
-        transform 0.35s cubic-bezier(.4, 0, .2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
-
-/* Icons */
 
 .theme-icon {
     position: relative;
     z-index: 2;
-
     width: 32px;
     height: 32px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 17px;
-
-    transition:
-        color 0.3s ease,
-        transform 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .sun {
@@ -508,31 +459,22 @@ a {
     color: #888;
 }
 
-
-/* ================================
-   NIGHT MODE
-================================ */
-
 .theme-toggle input:checked + .theme-slider {
     background: #181818;
     border-color: #333;
 }
 
-
 .theme-toggle input:checked + .theme-slider::before {
     transform: translateX(38px);
 }
-
 
 .theme-toggle input:checked + .theme-slider .sun {
     color: #666;
 }
 
-
 .theme-toggle input:checked + .theme-slider .moon {
     color: #111;
 }
-
 
 /* =========================
    CONTACT IMAGE
@@ -543,31 +485,23 @@ a {
     width: 100%;
     position: relative;
     overflow: hidden;
+    border-radius: 12px 12px 0 0;
 }
 
 .contact-image img {
     width: 100%;
     height: 100%;
     display: block;
-
     object-fit: cover;
     object-position: center 25%;
 }
 
 .contact-image::after {
     content: "";
-
     position: absolute;
     inset: 0;
-
-    background:
-        linear-gradient(
-            to bottom,
-            transparent 45%,
-            rgba(0, 0, 0, 0.35)
-        );
+    background: linear-gradient(to bottom, transparent 45%, rgba(0, 0, 0, 0.35));
 }
-
 
 /* =========================
    BADGES
@@ -575,19 +509,13 @@ a {
 
 .status-badge {
     position: absolute;
-
     top: 16px;
     left: 16px;
-
     z-index: 2;
-
     padding: 6px 11px;
-
     border-radius: 50px;
-
     background: #f59e0b;
     color: white;
-
     font-size: 0.72rem;
     font-weight: 700;
 }
@@ -603,7 +531,6 @@ a {
 .status-badge.normal {
     background: #14b8a6;
 }
-
 
 /* =========================
    CARD CONTENT
@@ -621,30 +548,95 @@ a {
 
 .contact-title h3 {
     font-size: 1.3rem;
+    color: var(--text-color);
 }
 
 .contact-role {
     margin-top: 3px;
-
-    color: #888;
+    color: var(--muted-color);
     font-size: 0.85rem;
 }
 
 .more-btn {
     width: 34px;
     height: 34px;
-
     border-radius: 50%;
-
-    background: #f3f3f3;
-
+    background: var(--border-color);
     font-size: 1.2rem;
+    color: var(--text-color);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.more-btn:hover {
+    transform: scale(1.1);
+}
+
+/* =========================
+   CARD DROPDOWN MENU
+========================= */
+
+.card-menu {
+    position: relative;
+}
+
+.contact-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 5;
+
+    min-width: 180px;
+
+    background: var(--card-color);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+
+    padding: 6px;
+    box-sizing: border-box;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
+}
+
+.card-menu.active .contact-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.contact-menu .delete-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 12px;
+
+    background: transparent;
+    color: #ef4444;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-align: left;
+
+    border-radius: 8px;
+
+    transition: background-color 0.15s ease;
+}
+
+.contact-menu .delete-btn:hover {
+    background: rgba(239, 68, 68, 0.1);
 }
 
 .contact-info {
     display: grid;
     gap: 9px;
-
     margin: 22px 0;
 }
 
@@ -652,16 +644,13 @@ a {
     display: flex;
     align-items: center;
     gap: 10px;
-
-    color: #666;
+    color: var(--text-color);
     font-size: 0.9rem;
 }
-
 
 /* =========================
    CARD BUTTONS
 ========================= */
-
 
 .card-actions {
     display: flex;
@@ -671,12 +660,10 @@ a {
 .primary-btn,
 .secondary-btn {
     flex: 1;
-
     padding: 11px;
-
     border-radius: 11px;
-
     font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease, color 0.2s ease;
 }
 
 .primary-btn {
@@ -684,35 +671,49 @@ a {
     color: white;
 }
 
-.secondary-btn {
-    background: #f0f0f0;
-    color: #222;
+.primary-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
 }
 
+.secondary-btn {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+
+.secondary-btn:hover {
+    background: var(--muted-color);
+    color: var(--bg-color);
+    transform: translateY(-2px);
+}
+
+body.dark-mode .primary-btn {
+    background: #333;
+}
+
+body.dark-mode .primary-btn:hover {
+    background: #444;
+}
 
 /* =========================
    ADD CONTACT
 ========================= */
 
 .add-contact-section {
-    padding: 80px 20px;
-
-    background: #eeeeef;
+    background: var(--bg-color);
+    padding: 40px 0;
+    transition: background-color 0.35s ease;
 }
 
 .form-container {
     width: min(800px, 100%);
     margin: auto;
-
     padding: 42px;
-
-    background: white;
-
-    border: 1px solid #e4e4e4;
+    background: var(--form-bg);
+    border: 1px solid var(--border-color);
     border-radius: 25px;
-
-    box-shadow:
-        0 15px 50px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 15px 50px var(--shadow-color);
+    transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .form-header {
@@ -721,15 +722,14 @@ a {
 
 .form-header h2 {
     margin: 5px 0;
-
     font-size: 2rem;
     letter-spacing: -1px;
+    color: var(--text-color);
 }
 
 .form-header p:last-child {
-    color: #777;
+    color: var(--muted-color);
 }
-
 
 /* =========================
    FORM
@@ -756,31 +756,29 @@ a {
 .category-field legend {
     font-size: 0.85rem;
     font-weight: 700;
+    color: var(--text-color);
 }
 
 .form-group input {
     width: 100%;
-
     padding: 14px 15px;
-
-    border: 1px solid #dedede;
+    border: 1px solid var(--border-color);
     border-radius: 12px;
-
     outline: none;
+    background: var(--input-bg);
+    color: var(--text-color);
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.2s ease;
+}
 
-    background: #fafafa;
-
-    transition: 0.2s ease;
+.form-group input::placeholder {
+    color: var(--muted-color);
 }
 
 .form-group input:focus {
-    background: white;
+    background: var(--card-color);
     border-color: #7c3aed;
-
-    box-shadow:
-        0 0 0 3px rgba(124, 58, 237, 0.1);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
 }
-
 
 /* =========================
    CATEGORY
@@ -788,6 +786,7 @@ a {
 
 .category-field {
     border: none;
+    padding: 0;
 }
 
 .category-field legend {
@@ -802,20 +801,22 @@ a {
 
 .category {
     padding: 9px 14px;
-
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 50px;
-
     font-size: 0.82rem;
     font-weight: 600;
-
     cursor: pointer;
-
-    transition: 0.2s ease;
+    transition: border-color 0.2s ease, background 0.2s ease;
+    background: var(--input-bg);
+    color: var(--text-color);
 }
 
 .category input {
     accent-color: currentColor;
+}
+
+.category:hover {
+    border-color: var(--text-color);
 }
 
 .emergency-option {
@@ -834,30 +835,31 @@ a {
     color: #0f766e;
 }
 
-
 /* =========================
    CREATE BUTTON
 ========================= */
 
 .create-btn {
     width: 100%;
-
     padding: 15px;
-
     border-radius: 13px;
-
     background: #151515;
     color: white;
-
     font-weight: 700;
-
-    transition: 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .create-btn:hover {
     transform: translateY(-2px);
 }
 
+body.dark-mode .create-btn {
+    background: #333;
+}
+
+body.dark-mode .create-btn:hover {
+    background: #444;
+}
 
 /* =========================
    FOOTER
@@ -865,22 +867,21 @@ a {
 
 .site-footer {
     padding: 30px 20px;
-
     text-align: center;
-
     color: #777;
     font-size: 0.85rem;
-
     background: #151515;
 }
 
+body.dark-mode .site-footer {
+    background: #0a0a0a;
+}
 
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 800px) {
-
     .main-nav {
         display: none;
     }
@@ -910,9 +911,7 @@ a {
     }
 }
 
-
 @media (max-width: 520px) {
-
     .add-user-btn {
         padding: 9px 12px;
         font-size: 0.8rem;
@@ -969,4 +968,224 @@ a {
     .category {
         text-align: center;
     }
+}
+
+@media (max-width: 500px) {
+
+    .delete-modal-content {
+        padding: 24px;
+
+        border-radius: 16px;
+    }
+
+    .delete-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .delete-modal-actions button {
+        width: 100%;
+    }
+
+}
+/* =================================
+   DELETE MODAL
+================================= */
+
+.delete-modal {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+
+    z-index: 1000;
+}
+
+
+/* =================================
+   MODAL ACTIVE
+================================= */
+
+.delete-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =================================
+   MODAL BOX
+================================= */
+
+.delete-modal-content {
+    width: min(420px, 100%);
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    background: var(--card-color);
+
+    border: 1px solid var(--border-color);
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.2);
+
+    transform: translateY(15px) scale(0.96);
+
+    transition:
+        transform 0.25s ease,
+        background-color 0.35s ease;
+}
+
+
+.delete-modal.active .delete-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+
+/* =================================
+   DELETE ICON
+================================= */
+
+.delete-icon {
+    width: 52px;
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 14px;
+
+    background: #fff0f0;
+
+    color: #e53935;
+}
+
+.delete-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+
+/* =================================
+   MODAL TEXT
+================================= */
+
+.delete-modal-text h2 {
+    margin: 0 0 8px;
+
+    color: var(--text-color);
+
+    font-size: 21px;
+}
+
+
+.delete-modal-text p {
+    margin: 0;
+
+    color: var(--muted-color);
+
+    font-size: 14px;
+
+    line-height: 1.6;
+}
+
+
+.delete-modal-text p strong {
+    color: var(--text-color);
+}
+
+
+.delete-modal-text span {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #999;
+
+    font-size: 12px;
+}
+
+
+/* =================================
+   MODAL BUTTONS
+================================= */
+
+.delete-modal-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 26px;
+}
+
+
+.delete-modal-actions button {
+    padding: 11px 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+/* Cancel */
+
+.cancel-delete-btn {
+    border: 1px solid var(--border-color);
+
+    background: transparent;
+
+    color: var(--text-color);
+}
+
+
+.cancel-delete-btn:hover {
+    background: var(--border-color);
+}
+
+
+/* Delete */
+
+.confirm-delete-btn {
+    border: 1px solid #e53935;
+
+    background: #e53935;
+
+    color: white;
+}
+
+
+.confirm-delete-btn:hover {
+    background: #c62828;
+
+    transform: translateY(-1px);
 }
