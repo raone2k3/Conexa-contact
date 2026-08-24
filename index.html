@@ -30,20 +30,62 @@
 <body>
 
     <!-- ================= HEADER ================= -->
+<!-- ================= HEADER ================= -->
 
-    <header class="site-header">
+<header class="site-header">
 
-        <div class="header-container">
+    <div class="header-container">
 
-            <a href="#" class="logo" aria-label="Contactly Home">
-                Reh<span>an</span>
+        <!-- Logo -->
+        <a href="#" class="logo" aria-label="Contactly Home">
+            Reh<span>an</span>
+        </a>
+
+
+        <!-- Navigation -->
+        <nav class="main-nav" aria-label="Main navigation">
+
+            <a href="#contacts">
+                Contacts
             </a>
 
-            <nav class="main-nav" aria-label="Main navigation">
-                <a href="#contacts">Contacts</a>
-                <a href="#about">About</a>
-            </nav>
+            <a href="#about">
+                About
+            </a>
 
+        </nav>
+
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+
+            <!-- Theme Toggle -->
+            <label
+                class="theme-toggle"
+                aria-label="Toggle dark mode"
+            >
+
+                <input
+                    type="checkbox"
+                    id="theme-toggle"
+                >
+
+                <span class="theme-slider">
+
+                    <span class="theme-icon sun">
+                        ☀
+                    </span>
+
+                    <span class="theme-icon moon">
+                        ☾
+                    </span>
+
+                </span>
+
+            </label>
+
+
+            <!-- Add Contact -->
             <button
                 class="add-user-btn"
                 type="button"
@@ -54,7 +96,9 @@
 
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
     <!-- ================= MAIN ================= -->

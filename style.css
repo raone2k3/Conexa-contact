@@ -117,7 +117,7 @@ a {
     color: white;
 
     padding: 11px 18px;
-    border-radius: 12px;
+    border-radius: 20px;
 
     font-weight: 600;
 
@@ -400,6 +400,137 @@ a {
 .status-badge {
     position: absolute;
     z-index: 2;
+}
+
+/* ================================
+   HEADER ACTIONS
+================================ */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+/* ================================
+   THEME TOGGLE
+================================ */
+
+.theme-toggle {
+    position: relative;
+
+    width: 76px;
+    height: 38px;
+
+    display: block;
+
+    cursor: pointer;
+}
+
+.theme-toggle input {
+    display: none;
+}
+
+
+.theme-slider {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 3px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dedede;
+    border-radius: 999px;
+
+    background: #eeeeee;
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+/* Sliding circle */
+
+.theme-slider::before {
+    content: "";
+
+    position: absolute;
+
+    width: 32px;
+    height: 32px;
+
+    left: 3px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.15);
+
+    transition:
+        transform 0.35s cubic-bezier(.4, 0, .2, 1);
+}
+
+
+/* Icons */
+
+.theme-icon {
+    position: relative;
+    z-index: 2;
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+
+    transition:
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.sun {
+    color: #111;
+}
+
+.moon {
+    color: #888;
+}
+
+
+/* ================================
+   NIGHT MODE
+================================ */
+
+.theme-toggle input:checked + .theme-slider {
+    background: #181818;
+    border-color: #333;
+}
+
+
+.theme-toggle input:checked + .theme-slider::before {
+    transform: translateX(38px);
+}
+
+
+.theme-toggle input:checked + .theme-slider .sun {
+    color: #666;
+}
+
+
+.theme-toggle input:checked + .theme-slider .moon {
+    color: #111;
 }
 
 
