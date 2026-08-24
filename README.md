@@ -6,7 +6,7 @@ Conexa allows users to create, search, manage, and delete contacts directly from
 
 ## 🚀 Live Demo
 
-[View Contactly Live](YOUR_GITHUB_PAGES_LINK)
+[View Contactly Live](https://raone2k3.github.io/Conexa-contact/)
 
 ## ✨ Features
 
