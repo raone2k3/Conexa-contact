@@ -33,11 +33,27 @@ const addUserBtn = document.querySelector(
 const contactGrid = document.querySelector(
     ".contact-grid"
 );
+// ==========================================
+// DELETE MODAL
+// ==========================================
+
+const deleteModal =
+    document.querySelector("#delete-modal");
+
+const deleteContactName =
+    document.querySelector("#delete-contact-name");
+
+const cancelDelete =
+    document.querySelector("#cancel-delete");
+
+const confirmDelete =
+    document.querySelector("#confirm-delete");
 
 const contactCount = document.querySelector(
     ".contact-count"
 );
 
+let contactToDelete = null;
 
 // ==========================================
 // SEARCH
@@ -63,7 +79,34 @@ function getUsers() {
     ) || [];
 
 }
+function fixUserIds() {
 
+    const users = getUsers();
+
+    let changed = false;
+
+    users.forEach(function (user) {
+
+        if (!user.id) {
+
+            user.id = crypto.randomUUID();
+
+            changed = true;
+        }
+
+    });
+
+    if (changed) {
+
+        localStorage.setItem(
+            "users",
+            JSON.stringify(users)
+        );
+
+    }
+
+    return users;
+}
 
 function saveUser(user) {
 
@@ -98,9 +141,8 @@ function updateContactCount() {
 // ==========================================
 
 function createCard(user) {
-
     return `
-        <article class="contact-card">
+        <article class="contact-card" data-id="${user.id}">
 
             <div class="contact-image">
 
@@ -130,13 +172,34 @@ function createCard(user) {
 
                     </div>
 
-                    <button
-                        type="button"
-                        class="more-btn"
-                        aria-label="More options"
-                    >
-                        ⋮
-                    </button>
+
+                    <!-- CARD MENU -->
+
+                    <div class="card-menu">
+
+                        <button
+                            type="button"
+                            class="more-btn"
+                            aria-label="More options"
+                        >
+                            ⋮
+                        </button>
+
+
+                        <div class="contact-menu">
+
+                            <button
+                                type="button"
+                                class="delete-btn"
+                                data-id="${user.id}"
+                            >
+                                <span>🗑</span>
+                                Delete Contact
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
@@ -200,12 +263,229 @@ function displayUsers(users) {
     }
 
 
-    contactGrid.innerHTML =
-        users.map(createCard).join("");
+    contactGrid.innerHTML = users
+        .map(function (user) {
+            return createCard(user);
+        })
+        .join("");
 
 }
 
+// ==========================================
+// OPEN CARD MENU
+// ==========================================
 
+contactGrid.addEventListener(
+    "click",
+    function (event) {
+
+        const moreButton =
+            event.target.closest(".more-btn");
+
+        if (!moreButton) {
+            return;
+        }
+
+        const cardMenu =
+            moreButton.closest(".card-menu");
+
+        if (!cardMenu) {
+            return;
+        }
+
+        document
+            .querySelectorAll(".card-menu.active")
+            .forEach(function (menu) {
+
+                if (menu !== cardMenu) {
+                    menu.classList.remove("active");
+                }
+
+            });
+
+        cardMenu.classList.toggle("active");
+    }
+);
+
+// ==========================================
+// CLOSE CARD MENU ON OUTSIDE CLICK
+// ==========================================
+
+document.addEventListener(
+    "click",
+    function (event) {
+
+        const openMenu =
+            document.querySelector(".card-menu.active");
+
+        if (!openMenu) {
+            return;
+        }
+
+        if (openMenu.contains(event.target)) {
+            return;
+        }
+
+        openMenu.classList.remove("active");
+    }
+);
+
+// ==========================================
+// CLOSE CARD MENU ON ESCAPE
+// ==========================================
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+        const openMenu =
+            document.querySelector(".card-menu.active");
+
+        if (openMenu) {
+            openMenu.classList.remove("active");
+        }
+
+    }
+);
+
+// ==========================================
+// OPEN DELETE CONFIRMATION
+// ==========================================
+
+contactGrid.addEventListener(
+    "click",
+    function (event) {
+
+        const deleteButton =
+            event.target.closest(".delete-btn");
+
+        if (!deleteButton) {
+            return;
+        }
+
+        const userId =
+            deleteButton.dataset.id;
+
+        const users = getUsers();
+
+        const user =
+            users.find(function (user) {
+                return user.id === userId;
+            });
+
+        if (!user) {
+            return;
+        }
+
+        contactToDelete = userId;
+
+        deleteContactName.textContent =
+            user.name;
+
+        deleteButton
+            .closest(".card-menu")
+            .classList.remove("active");
+
+        deleteModal.classList.add("active");
+
+        deleteModal.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+    }
+);
+// ==========================================
+// CLOSE DELETE MODAL
+// ==========================================
+
+function closeDeleteModal() {
+
+    deleteModal.classList.remove("active");
+
+    deleteModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+    contactToDelete = null;
+}
+cancelDelete.addEventListener(
+    "click",
+    function () {
+
+        closeDeleteModal();
+
+    }
+);
+
+// ==========================================
+// CONFIRM DELETE
+// ==========================================
+
+confirmDelete.addEventListener(
+    "click",
+    function () {
+
+        if (!contactToDelete) {
+            return;
+        }
+
+        let users = getUsers();
+
+        users = users.filter(
+            function (user) {
+
+                return user.id !== contactToDelete;
+
+            }
+        );
+
+        localStorage.setItem(
+            "users",
+            JSON.stringify(users)
+        );
+
+        displayUsers(users);
+
+        updateContactCount();
+
+        closeDeleteModal();
+    }
+);
+
+// ==========================================
+// Add Escape
+// ==========================================
+deleteModal.addEventListener(
+    "click",
+    function (event) {
+
+        if (event.target === deleteModal) {
+            closeDeleteModal();
+        }
+
+    }
+);
+
+document.addEventListener(
+    "keydown",
+    function (event) {
+
+        if (
+            event.key === "Escape" &&
+            deleteModal.classList.contains("active")
+        ) {
+
+            closeDeleteModal();
+
+        }
+
+    }
+);
 // ==========================================
 // ADD CONTACT BUTTON
 // ==========================================
@@ -322,17 +602,19 @@ form.addEventListener(
 
             const user = {
 
-                image: reader.result,
+    id: crypto.randomUUID(),
 
-                name: name,
+    image: reader.result,
 
-                town: town,
+    name: name,
 
-                purpose: userPurpose,
+    town: town,
 
-                category: selectedCategory.value
+    purpose: userPurpose,
 
-            };
+    category: selectedCategory.value
+
+};
 
 
             // Save
@@ -459,7 +741,7 @@ searchInput.addEventListener(
 
 function init() {
 
-    const users = getUsers();
+    const users = fixUserIds();
 
     displayUsers(users);
 
@@ -469,3 +751,47 @@ function init() {
 
 
 init();
+
+// ===============================
+// THEME TOGGLE
+// ===============================
+
+const themeToggle =
+    document.querySelector("#theme-toggle");
+
+    function setTheme(isDark) {
+
+    document.body.classList.toggle(
+        "dark-mode",
+        isDark
+    );
+
+    themeToggle.checked = isDark;
+
+    localStorage.setItem(
+        "theme",
+        isDark ? "dark" : "light"
+    );
+}
+
+themeToggle.addEventListener(
+    "change",
+    function () {
+
+        setTheme(themeToggle.checked);
+
+    }
+);
+
+const savedTheme =
+    localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+
+    setTheme(true);
+
+} else {
+
+    setTheme(false);
+
+}
